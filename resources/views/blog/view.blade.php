@@ -36,86 +36,33 @@
     <div class="post" id="comments">
 
         <div class="post_title">
-            <h1>4 Responses to &#8220;Post with comments&#8221;</h1>
+            <h1>{{ count($post->comments) }} Responses to &#8220;{{ $post->title }}&#8221;</h1>
         </div>
 
         <div class="post_body nicelist">
 
             <ol>
 
-                <li class="alt">
+                <?php $i=0;?>
+                @foreach($post->comments as $comment)
+                    <li @if($i%2==0)class="alt"@endif>
+                        <div class="comment_gravatar left">
+                            <img alt="" src="{{ asset('img') }}/sample-gravatar.jpg" height="32" width="32"/>
+                        </div>
 
-                    <div class="comment_gravatar left">
-                        <img alt="" src="{{ asset('img') }}/sample-gravatar.jpg" height="32" width="32"/>
-                    </div>
+                        <div class="comment_author left">
+                            <span class="comment">name{{ $comment->users_id }}</span>
+                            <div class="date"><a href="#">{{ $comment->created_at }}</a></div>
+                        </div>
 
-                    <div class="comment_author left">
-                        <span class="comment">Duis porttitor</span>
-                        <div class="date"><a href="#">December 20th, 2007 at 9:35 pm</a></div>
-                    </div>
+                        <div class="clearer">&nbsp;</div>
 
-                    <div class="clearer">&nbsp;</div>
+                        <div class="body">
+                            <p>{{ $comment->content }}</p>
+                        </div>
 
-                    <div class="body">
-                        <p>Hi</p>
-                    </div>
-
-                </li>
-                <li id="comment-256">
-
-                    <div class="comment_gravatar left">
-                        <img alt="" src="{{ asset('img') }}/sample-gravatar.jpg" height="32" width="32"/>
-                    </div>
-
-                    <div class="comment_author left">
-                        <span class="comment"><a href="#">Elementum</a></span>
-                        <div class="date"><a href="#">December 21st, 2007 at 12:46 pm</a></div>
-                    </div>
-
-                    <div class="clearer">&nbsp;</div>
-
-                    <div class="body">
-                        <p>Comments are cool!</p>
-                    </div>
-
-                </li>
-                <li class="alt" id="comment-283">
-
-                    <div class="comment_gravatar left">
-                        <img alt="" src="{{ asset('img') }}/sample-gravatar.jpg" height="32" width="32"/>
-                    </div>
-
-                    <div class="comment_author left">
-                        <span class="comment"><a href="#">Posuere tristique</a></span>
-                        <div class="date"><a href="#">December 24th, 2007 at 5:02 pm</a></div>
-                    </div>
-
-                    <div class="clearer">&nbsp;</div>
-
-                    <div class="body">
-                        <p>Hi, wanna see comments..</p>
-                    </div>
-
-                </li>
-
-                <li id="comment-429">
-
-                    <div class="comment_gravatar left">
-                        <img alt="" src="{{ asset('img') }}/sample-gravatar.jpg" height="32" width="32"/>
-                    </div>
-
-                    <div class="comment_author left">
-                        <span class="comment"><a href="#">Aenean</a></span>
-                        <div class="date"><a href="#">January 18th, 2008 at 7:54 pm</a></div>
-                    </div>
-
-                    <div class="clearer">&nbsp;</div>
-
-                    <div class="body">
-                        <p>Nice template !</p>
-                    </div>
-
-                </li>
+                    </li>
+                @endforeach
             </ol>
 
         </div>

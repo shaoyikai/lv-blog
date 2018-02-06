@@ -20,7 +20,9 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Posts::with(['tags','comments','users'])->paginate(5);
+        $posts = Posts::with(['tags','comments','users'])
+            ->orderBy('posts.created_at','desc')
+            ->paginate(5);
         return view('blog.index',[
             'data' => $posts,
         ]);
